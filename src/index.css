@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Quicksand";
+    background-color: #f2fdff;
+  }
+  h1 {
+    font-weight: 700;
+  }
+}
