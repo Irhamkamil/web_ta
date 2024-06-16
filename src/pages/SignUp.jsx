@@ -1,13 +1,15 @@
 import { Component } from "react";
 import { NavLink } from "react-router-dom";
-
+import FirebaseServices from '../services/Firebase'
+import NotyServices from "../services/Noty";
+import sessionStorageServices from "../services/SessionStorage";
+import { Navigate } from "react-router-dom";
 export class SignUp extends Component {
   state = {
     // diambil dari id pada input
     email: "",
     password: "",
-    username: "",
-    phonenumber: ""
+    redirectToHome: false
   };
   handleChange = (e) => {
     this.setState({
@@ -16,10 +18,29 @@ export class SignUp extends Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    FirebaseServices.createUser(this.state.email, this.state.password).then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user
+
+      // Show success message
+      NotyServices.success('Hi, ' + user.email + '! You have successfully signed up.')
+
+      // Save to session
+      sessionStorageServices.set('user_email', user.email)
+      sessionStorageServices.set('user_uid', user.uid)
+
+      // Redirect to home
+      this.setState({ redirectToHome: true });
+    }).catch((error) => {
+      NotyServices.error(error.message)
+    })
   };
 
   render() {
+    if (this.state.redirectToHome) {
+      return <Navigate to="/" />; // Redirect to home page
+    }
+
     return (
       <div className="mx-auto flex w-full max-w-sm flex-col gap-6 mt-40 mb-20">
         <form onSubmit={this.handleSubmit}>
@@ -28,33 +49,6 @@ export class SignUp extends Component {
             <p className="text-sm">Sign in to access your account</p>
           </div>
           <div className="form-group">
-            <div className="form-field">
-              <label className="form-label">Username</label>
-              <input
-                placeholder="Type here"
-                type="text"
-                id="username"
-                onChange={this.handleChange}
-                className="input max-w-full"
-              />
-              <label className="form-label">
-                <span className="form-label-alt">Please enter a username.</span>
-              </label>
-            </div>
-            <div className="form-field">
-              <label className="form-label">Phone Number</label>
-              <input
-                placeholder="Type here"
-                type="tel"
-                id="phonenumber"
-                pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}"
-                onChange={this.handleChange}
-                className="input max-w-full"
-              />
-              <label className="form-label">
-                <span className="form-label-alt">Format: 1234-5678-9123</span>
-              </label>
-            </div>
             <div className="form-field">
               <label className="form-label">Email address</label>
               <input
@@ -82,19 +76,6 @@ export class SignUp extends Component {
                 />
               </div>
             </div>
-            {/* <div className="form-field">
-            <div className="form-control justify-between">
-              <div className="flex gap-2">
-                <input type="checkbox" className="checkbox" />
-                <a href="#">Remember me</a>
-              </div>
-              <label className="form-label">
-                <a className="link link-underline-hover link-primary text-sm">
-                  Forgot your password?
-                </a>
-              </label>
-            </div>
-          </div> */}
             <div className="form-field pt-5">
               <div className="form-control justify-between">
                 <button className="btn btn-primary w-full">Sign Up</button>
@@ -109,9 +90,6 @@ export class SignUp extends Component {
                 >
                   Do you already have an account? Sign in.
                 </NavLink>
-                {/* <a className="link link-underline-hover link-primary text-sm">
-                Do you already have an account? Sign in.
-              </a> */}
               </div>
             </div>
           </div>
