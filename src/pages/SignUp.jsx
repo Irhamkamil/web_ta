@@ -21,6 +21,7 @@ export class SignUp extends Component {
     FirebaseServices.createUser(this.state.email, this.state.password).then((userCredential) => {
       // Signed in 
       const user = userCredential.user
+      console.log(user)
 
       // Show success message
       NotyServices.success('Hi, ' + user.email + '! You have successfully signed up.')
@@ -37,10 +38,7 @@ export class SignUp extends Component {
   };
 
   render() {
-    if (this.state.redirectToHome) {
-      return <Navigate to="/" />; // Redirect to home page
-    }
-
+    if (this.state.redirectToHome) {return <Navigate to="/" />; }
     return (
       <div className="mx-auto flex w-full max-w-sm flex-col gap-6 mt-40 mb-20">
         <form onSubmit={this.handleSubmit}>

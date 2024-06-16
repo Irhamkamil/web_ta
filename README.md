@@ -10,3 +10,6 @@ Currently, two official plugins are available:
 Catatan Developer :
 -Menggunakan rippleUI dan Flowbite untuk membantu proses slicing
 -Menggunakan react-icon juga
+
+# Demo
+https://web-ta-smoky.vercel.app

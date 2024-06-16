@@ -2,7 +2,7 @@ import Config from "../config/app";
 
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 class FirebaseServices {
     static app() {
@@ -19,6 +19,10 @@ class FirebaseServices {
 
     static createUser(email, password) {
         return createUserWithEmailAndPassword(getAuth(this.app()), email, password);
+    }
+
+    static signInUser(email, password) {
+        return signInWithEmailAndPassword(getAuth(this.app()), email, password);
     }
 }
 

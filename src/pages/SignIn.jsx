@@ -1,10 +1,15 @@
 import { Component } from "react";
 import { NavLink } from "react-router-dom";
+import FirebaseServices from '../services/Firebase'
+import NotyServices from "../services/Noty";
+import sessionStorageServices from "../services/SessionStorage";
+import { Navigate } from "react-router-dom";
 
 export class SignIn extends Component {
   state = {
     email: "",
-    password: ""
+    password: "",
+    redirectToHome: false
   };
   handleChange = (e) => {
     this.setState({
@@ -13,10 +18,27 @@ export class SignIn extends Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    FirebaseServices.signInUser(this.state.email, this.state.password).then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      console.log(user)
+
+      // Show success message
+      NotyServices.success('Hi, ' + user.email + '! You have successfully signed up.')
+
+      // Save to session
+      sessionStorageServices.set('user_email', user.email)
+      sessionStorageServices.set('user_uid', user.uid)
+
+      // Redirect to home
+      this.setState({ redirectToHome: true });
+    }).catch((error) => {
+      NotyServices.error(error.message)
+    })
   };
 
   render() {
+    if (this.state.redirectToHome) {return <Navigate to="/" />; }
     return (
       <div className="mx-auto flex w-full max-w-sm flex-col gap-6 mt-40 mb-20">
         <form onSubmit={this.handleSubmit}>
