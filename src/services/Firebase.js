@@ -3,6 +3,7 @@ import Config from "../config/app";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import sessionStorageServices from "./SessionStorage";
 
 class FirebaseServices {
     static app() {
@@ -23,6 +24,11 @@ class FirebaseServices {
 
     static signInUser(email, password) {
         return signInWithEmailAndPassword(getAuth(this.app()), email, password);
+    }
+
+    static isLoggedIn() {
+        return [undefined, '', null].includes(sessionStorageServices.get('user_email')) == false &&
+                [undefined, '', null].includes(sessionStorageServices.get('user_uid')) == false
     }
 }
 

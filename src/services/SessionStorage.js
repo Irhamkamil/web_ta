@@ -1,10 +1,14 @@
 class sessionStorageServices {
     static set(key, value) {
-        sessionStorage.setItem(key, value)                
+        return sessionStorage.setItem(key, value)                
     }
 
     static get(key) {
-        sessionStorage.getItem(key)
+        return sessionStorage.getItem(key)
+    }
+
+    static remove(key) {
+        return sessionStorage.removeItem(key)
     }
 }
 
