@@ -84,11 +84,11 @@ export class SignIn extends Component {
                   <input type="checkbox" className="checkbox" />
                   <a href="#">Remember me</a>
                 </div>
-                <label className="form-label">
+                {/* <label className="form-label">
                   <a className="link link-underline-hover link-primary text-sm">
                     Forgot your password?
                   </a>
-                </label>
+                </label> */}
               </div>
             </div>
             <div className="form-field pt-5">
