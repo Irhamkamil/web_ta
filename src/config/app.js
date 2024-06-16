@@ -18,6 +18,13 @@ const Config = {
         messagingSenderId: "279955156011",
         appId: "1:279955156011:web:77e11eeea6ef290dd98e6e",
         measurementId: "G-YKV0450CMD"
+    },
+
+    /**
+     * Firestore collection name configuration section
+     */
+    'firestore': {
+        'products': 'products',
     }
 }
 

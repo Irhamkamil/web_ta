@@ -4,6 +4,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import sessionStorageServices from "./SessionStorage";
+import { getFirestore } from "firebase/firestore";
 
 class FirebaseServices {
     static app() {
@@ -29,6 +30,10 @@ class FirebaseServices {
     static isLoggedIn() {
         return [undefined, '', null].includes(sessionStorageServices.get('user_email')) == false &&
                 [undefined, '', null].includes(sessionStorageServices.get('user_uid')) == false
+    }
+
+    static firestore() {
+        return getFirestore(this.app());
     }
 }
 

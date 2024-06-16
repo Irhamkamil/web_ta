@@ -1,7 +1,7 @@
 import { useState } from "react";
 import classNames from "classnames";
 
-const TabsDetail = () => {
+const TabsDetail = ({data}) => {
   const [activeTab, setActiveTab] = useState("profile");
 
   const tabs = [
@@ -13,12 +13,15 @@ const TabsDetail = () => {
   const tabContent = {
     profile: (
       <p className="text-sm text-gray-500 dark:text-gray-400">
-        This is some placeholder content for the{" "}
-        <strong className="font-medium text-gray-800 dark:text-white">
-          Itenary tabs associated content
-        </strong>
-        . Clicking another tab will toggle the visibility of this one for the
-        next.
+        <h4 className="text-black font-bold mb-1">
+          {data.name}
+        </h4>
+        <ul>
+          <li>Category : {data.category} </li>
+          <li>Destination : {data.destination} </li>
+          <li>Duration : {data.duration} </li>
+          <li>Price : {data.price} </li>
+        </ul>
       </p>
     ),
     dashboard: (

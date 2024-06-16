@@ -10,7 +10,8 @@ import Gallery from "./pages/Gallery";
 import Footer from "./components/Footer";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
-import ProductDetails from "./pages/ProductDetails";
+// import ProductDetails from "./pages/ProductDetails";
+import ProductDetailsWrapper from "./components/wrapper/ProductDetailsWrapper";
 import CreateTour from "./pages/CreateTour";
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/createtour" element={<CreateTour />} />
-        <Route path="/tour/productdetails/:id" element={<ProductDetails />} />
+        <Route path="/tour/details/:id" element={<ProductDetailsWrapper />} />
       </Routes>
       <Footer />
     </>

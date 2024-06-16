@@ -13,6 +13,7 @@
     "classnames": "^2.5.1",
     "firebase": "^10.12.2",
     "flowbite": "^2.3.0",
+    "js-base64": "^3.7.7",
     "noty": "^3.2.0-beta-deprecated",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
