@@ -10,7 +10,7 @@ const LoginBtn = () => {
   if (firebaseServices.isLoggedIn()) {
     return (
       <>
-        <button onClick={logoutAction} className="btn btn-solid-success text-base btn-lg font-bold text-white">
+        <button onClick={logoutAction} className="btn btn-solid-success text-base btn-lg font-bold text-dark">
           Logout
         </button>
       </>
@@ -19,7 +19,7 @@ const LoginBtn = () => {
     return (
       <>
         <NavLink to="/signin" className="navbar-item">
-          <button className="btn btn-solid-success text-base btn-lg font-bold text-white">
+          <button className="btn btn-solid-success text-base btn-lg font-bold text-dark">
             Login
           </button>
         </NavLink>
@@ -58,13 +58,13 @@ const Navbar = () => {
         </NavLink>
       </div>
       <div className="navbar-end gap-x-10 font-bold">
-        <NavLink to="/tour" className="navbar-item text-white">
+        <NavLink to="/tour" className="navbar-item text-dark">
           Tour
         </NavLink>
-        <NavLink to="/gallery" className="navbar-item text-white">
+        <NavLink to="/gallery" className="navbar-item text-dark">
           Gallery
         </NavLink>
-        <NavLink to="/testimoni" className="navbar-item text-white">
+        <NavLink to="/testimoni" className="navbar-item text-dark">
           Testimoni
         </NavLink>
         <LoginBtn/>

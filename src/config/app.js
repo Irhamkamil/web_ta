@@ -3,6 +3,9 @@ const Config = {
      * Application configuration section
      */
     'app': {
+        // application name
+        'name': 'OUTREKK',
+
         // path in the storage bucket to stored the logo image
         'logo': 'assets/outrekk.png',
     },
@@ -25,6 +28,7 @@ const Config = {
      */
     'firestore': {
         'products': 'products',
+        'gallery': 'gallery',
     }
 }
 

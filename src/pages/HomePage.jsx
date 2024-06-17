@@ -9,6 +9,8 @@ import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Component } from "react";
 import ProductsModels from "../models/products";
+import Config from "../config/app";
+import NotyServices from "../services/Noty";
 export default class HomePage extends Component {
   state = {
     products: []
@@ -20,6 +22,7 @@ export default class HomePage extends Component {
       this.setState({ products: products });
     }).catch((error) => {
       console.log(error)
+      NotyServices.error("Failed to get products data")
     })
   };
   
@@ -36,7 +39,7 @@ export default class HomePage extends Component {
               Domestic & International Tour Packages
             </h1>
             <p className="text-white text-xl text-justify w-7/12">
-              Now, holidays are becoming EASY, FAST, and FUN. Labiru Tour provides
+              Now, holidays are becoming EASY, FAST, and FUN. {Config.app.name} provides
               various options for tour packages, domestic and international tours
               to various favorite destinations. Choose your package and experience
               the convenience!
@@ -164,7 +167,7 @@ export default class HomePage extends Component {
           </p>
         </div>
         <div className="container w-full mt-14">
-          <Image />
+          {/* <Image /> */}
         </div>
         <div className="container flex flex-col w-full h-40 items-center justify-center gap-3 mt-40">
           <NavLink

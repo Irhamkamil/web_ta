@@ -6,6 +6,8 @@ import { Component } from "react";
 import ProductsModels from "../models/products";
 import EncryptionServices from "../services/Encryption";
 import FirebaseServices from "../services/Firebase";
+import Config from "../config/app";
+import NotyServices from "../services/Noty"
 export default class ProductDetails extends Component {
   state = {
     product: {},
@@ -18,6 +20,7 @@ export default class ProductDetails extends Component {
       this.setState({ products: products });
     }).catch((error) => {
       console.log(error)
+      NotyServices.error("Failed to get products data")
     })
   };
 
@@ -29,6 +32,7 @@ export default class ProductDetails extends Component {
       this.setState({ product: product });
     }).catch((error) => {
       console.log(error)
+      NotyServices.error("Failed to get product data")
     })
   };
 
@@ -46,7 +50,7 @@ export default class ProductDetails extends Component {
               Domestic & International Tour Packages - {this.state.product.name}
             </h1>
             <p className="text-white text-base text-center w-6/12">
-              Now, holidays are becoming EASY, FAST, and FUN. OUTREKK provides
+              Now, holidays are becoming EASY, FAST, and FUN. {Config.app.name} provides
               various options for tour packages, domestic and international tours
               to various favorite destinations. Choose your package and experience
               the convenience!

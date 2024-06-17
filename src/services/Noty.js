@@ -1,6 +1,10 @@
 import Noty from 'noty';
-
+// Docs : https://ned.im/noty/#/installation
 class NotyServices {
+    /**
+     * Show success message using Noty
+     * @param {*} message 
+     */
     static success(message) {
         new Noty({
             type: 'success',
@@ -10,6 +14,10 @@ class NotyServices {
         }).show();
     }
 
+    /**
+     * Show error message using Noty
+     * @param {*} message 
+     */
     static error(message) {
         new Noty({
             type: 'error',
@@ -19,6 +27,10 @@ class NotyServices {
         }).show();
     }
 
+    /**
+     * Show warning message using Noty
+     * @param {*} message 
+     */
     static warning(message) {
         new Noty({
             type: 'warning',
@@ -28,6 +40,10 @@ class NotyServices {
         }).show();
     }
 
+    /**
+     * Show info message using Noty
+     * @param {*} message 
+     */
     static info(message) {
         new Noty({
             type: 'info',
