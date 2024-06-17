@@ -8,10 +8,12 @@ import EncryptionServices from "../services/Encryption";
 import FirebaseServices from "../services/Firebase";
 import Config from "../config/app";
 import NotyServices from "../services/Noty"
+import { Navigate } from "react-router-dom";
 export default class ProductDetails extends Component {
   state = {
     product: {},
     products: [],
+    redirectToLogin: false,
   }
 
   listProducts = async () => {
@@ -36,12 +38,38 @@ export default class ProductDetails extends Component {
     })
   };
 
+  bookingDisabled = () => {
+    NotyServices.error("You must login first")
+    this.setState({ redirectToLogin: true })
+  }
+
   componentDidMount() {
     this.findProduct()
     this.listProducts()
   };
 
   render() {
+    const BookingButtonElement = () => {
+      if (FirebaseServices.isLoggedIn()) {
+        return (
+          <button className="btn bg-secondary btn-lg flex flex-auto h-full shadow-2xl rounded-2xl text-white1 text-center text-2xl font-bold">
+            Pesan Paket
+            <br />
+            Sekarang
+          </button>
+        ) 
+      } else {
+        return (
+          <button onClick={this.bookingDisabled} className="btn bg-gray-400 btn-lg flex flex-auto h-full shadow-2xl rounded-2xl text-white1 text-center text-2xl font-bold">
+            Pesan Paket
+            <br />
+            Sekarang
+          </button>
+        )
+      }
+    }
+
+    if (this.state.redirectToLogin) {return (<Navigate to="/signin" />)}
     return (
       <div className="w-full h-[3700px] mt-20 bg-white1 relative">
         <div className="w-full h-screen overflow-hidden bg-pds bg-center lg:bg-cover bg-no-repeat">
@@ -76,32 +104,31 @@ export default class ProductDetails extends Component {
             <div className="flex flex-auto items-center justify-between font-bold text-2xl text-black">
               <div className="flex flex-col gap-2 text-center">
                 <h1>Destinasi</h1>
-                <p className="text-lg text-slate-500">Tangkuban Perahu</p>
+                <p className="text-lg text-slate-500">
+                  {this.state.product.name}
+                </p>
               </div>
               <div className="flex flex-col gap-2 text-center">
                 <h1>Durasi</h1>
-                <p className="text-secondary">2W4D</p>
+                <p className="text-secondary">
+                  {this.state.product.duration} 
+                </p>
               </div>
               <div className="flex flex-col gap-2 text-center">
                 <h1>Kategori</h1>
-                <p className="text-lg text-slate-500">Familiy Tour</p>
+                <p className="text-lg text-slate-500">
+                  {this.state.product.category}
+                </p>
               </div>
               <div className="flex flex-col gap-2 text-center">
                 <h1>Harga</h1>
-                <p className="text-secondary">Rp.500K</p>
+                <p className="text-secondary">
+                  {this.state.product.price}
+                </p>
               </div>
             </div>
           </div>
-          {/* <div className="flex flex-auto items-center justify-center h-full shadow-2xl rounded-2xl text-white1 text-center text-2xl font-bold bg-secondary">
-            Pesan Paket
-            <br />
-            Sekarang
-          </div> */}
-          <button className="btn bg-secondary btn-lg flex flex-auto h-full shadow-2xl rounded-2xl text-white1 text-center text-2xl font-bold">
-            Pesan Paket
-            <br />
-            Sekarang
-          </button>
+          <BookingButtonElement />
         </div>
         <div className="container flex flex-col w-full h-40 items-center justify-center gap-3 mt-24">
           <h2 className="font-bold text-2xl text-black">
