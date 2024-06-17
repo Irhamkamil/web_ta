@@ -4,10 +4,10 @@ const Config = {
      */
     'app': {
         // application name
-        'name': 'OUTREKK',
+        name: 'OUTREKK',
 
         // path in the storage bucket to stored the logo image
-        'logo': 'assets/outrekk.png',
+        logo: 'assets/outrekk.png',
     },
 
     /**
@@ -27,8 +27,9 @@ const Config = {
      * Firestore collection name configuration section
      */
     'firestore': {
-        'products': 'products',
-        'gallery': 'gallery',
+        products: 'products',
+        gallery: 'gallery',
+        testimonial: 'testimonial',
     }
 }
 
