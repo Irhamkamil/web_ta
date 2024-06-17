@@ -9,11 +9,14 @@ import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Component } from "react";
 import ProductsModels from "../models/products";
+import GalleryModels from "../models/gallery";
 import Config from "../config/app";
 import NotyServices from "../services/Noty";
 export default class HomePage extends Component {
   state = {
-    products: []
+    products: [],
+    bestDestination: [],
+    gallery: [],
   };
 
   listProducts = async () => {
@@ -25,9 +28,31 @@ export default class HomePage extends Component {
       NotyServices.error("Failed to get products data")
     })
   };
+
+  bestDestination = async () => {
+    await ProductsModels.limit(3).then((results) => {
+      const products = results.docs.map((doc) => doc.data());
+      this.setState({ bestDestination: products });
+    }).catch((error) => {
+      console.log(error)
+      NotyServices.error("Failed to get products data")
+    })
+  };
+
+  galleryList = async () => {
+    await GalleryModels.limit(3).then((results) => {
+      const gallery = results.docs.map((doc) => doc.data());
+      this.setState({ gallery: gallery });
+    }).catch((error) => {
+      console.log(error)
+      NotyServices.error("Failed to get gallery data")
+    })
+  }
   
   componentDidMount() {
     this.listProducts()
+    this.bestDestination()
+    this.galleryList()
   };
 
   render() {
@@ -94,7 +119,7 @@ export default class HomePage extends Component {
           </p>
         </div>
         <div className="container w-full -mt-14">
-          <BestTourist />
+          <Product products={this.state.bestDestination} />
         </div>
         <div className="flex h-auto items-center bg-primer mt-60">
           <div className="flex w-full justify-center gap-4">
@@ -167,7 +192,7 @@ export default class HomePage extends Component {
           </p>
         </div>
         <div className="container w-full mt-14">
-          {/* <Image /> */}
+          <Image images={this.state.gallery} />
         </div>
         <div className="container flex flex-col w-full h-40 items-center justify-center gap-3 mt-40">
           <NavLink
