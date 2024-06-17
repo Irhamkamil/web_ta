@@ -78,19 +78,19 @@ export class SignIn extends Component {
                 />
               </div>
             </div>
-            <div className="form-field">
+            {/* <div className="form-field">
               <div className="form-control justify-between">
                 <div className="flex gap-2">
                   <input type="checkbox" className="checkbox" />
                   <a href="#">Remember me</a>
                 </div>
-                {/* <label className="form-label">
+                <label className="form-label">
                   <a className="link link-underline-hover link-primary text-sm">
                     Forgot your password?
                   </a>
-                </label> */}
+                </label>
               </div>
-            </div>
+            </div> */}
             <div className="form-field pt-5">
               <div className="form-control justify-between">
                 <button className="btn btn-primary w-full">Login</button>

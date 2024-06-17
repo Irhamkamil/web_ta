@@ -8,6 +8,9 @@ const Config = {
 
         // path in the storage bucket to stored the logo image
         logo: 'assets/outrekk.png',
+
+        whatsapp_admin: '6282126544124',
+        // whatsapp_admin: '6289655541804',
     },
 
     /**
@@ -30,6 +33,7 @@ const Config = {
         products: 'products',
         gallery: 'gallery',
         testimonial: 'testimonial',
+        booking: 'booking'
     }
 }
 

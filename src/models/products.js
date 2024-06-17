@@ -1,7 +1,6 @@
 import FirebaseServices from "../services/Firebase";
 import { doc, getDoc, collection, getDocs, query, where, limit } from "firebase/firestore";
 import Config from "../config/app";
-
 class Products {
     /**
      * List all products

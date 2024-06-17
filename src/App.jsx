@@ -12,7 +12,7 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 // import ProductDetails from "./pages/ProductDetails";
 import ProductDetailsWrapper from "./components/wrapper/ProductDetailsWrapper";
-import CreateTour from "./pages/CreateTour";
+import BookTourWrapper from "./components/wrapper/bookTour";
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
         <Route path="/testimoni" element={<TestimoniPage />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/createtour" element={<CreateTour />} />
+        <Route path="/book-tour/:id" element={<BookTourWrapper />} />
         <Route path="/tour/details/:id" element={<ProductDetailsWrapper />} />
       </Routes>
       <Footer />

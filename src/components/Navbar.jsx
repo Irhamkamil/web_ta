@@ -10,7 +10,7 @@ const LoginBtn = () => {
   if (firebaseServices.isLoggedIn()) {
     return (
       <>
-        <button onClick={logoutAction} className="btn btn-solid-success text-base btn-lg font-bold text-dark">
+        <button onClick={logoutAction} className="btn btn-warning text-base btn-lg font-bold text-dark">
           Logout
         </button>
       </>

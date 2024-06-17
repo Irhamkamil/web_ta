@@ -9,11 +9,15 @@ import FirebaseServices from "../services/Firebase";
 import Config from "../config/app";
 import NotyServices from "../services/Noty"
 import { Navigate } from "react-router-dom";
+import WhatsappServices from "../services/Whatsapp";
+import Noty from "noty";
 export default class ProductDetails extends Component {
   state = {
-    product: {},
+    id: null,
+    product: [],
     products: [],
     redirectToLogin: false,
+    redirectToBook: false,
   }
 
   listProducts = async () => {
@@ -28,6 +32,8 @@ export default class ProductDetails extends Component {
 
   findProduct = () => {
     const { id } = this.props;
+    this.setState({ id: id });
+
     ProductsModels.findBy('name', EncryptionServices.base64Decrypt(id)).then((results) => {
       const product = results.docs.map((doc) => doc.data())[0]
       console.log(product)
@@ -43,6 +49,31 @@ export default class ProductDetails extends Component {
     this.setState({ redirectToLogin: true })
   }
 
+  bookingAction = () => {
+    const product = this.state.product
+    const SELF = this
+
+    var n = new Noty({
+      text: 'Are you want to negotiate this tour package?',
+      buttons: [
+        Noty.button('YES', 'btn m-1', function () {
+          WhatsappServices.send_to_admin(WhatsappServices.negotiateTourPackageTemplate(product))
+          n.close();
+        }),
+    
+        Noty.button('NO', 'btn m-1', function () {
+            SELF.bookingRedirect()
+            n.close();
+        })
+      ]
+    });
+    n.show();
+  }
+
+  bookingRedirect = () => {
+    this.setState({ redirectToBook: true })
+  }
+
   componentDidMount() {
     this.findProduct()
     this.listProducts()
@@ -52,7 +83,7 @@ export default class ProductDetails extends Component {
     const BookingButtonElement = () => {
       if (FirebaseServices.isLoggedIn()) {
         return (
-          <button className="btn bg-secondary btn-lg flex flex-auto h-full shadow-2xl rounded-2xl text-white1 text-center text-2xl font-bold">
+          <button onClick={this.bookingAction} className="btn bg-secondary btn-lg flex flex-auto h-full shadow-2xl rounded-2xl text-white1 text-center text-2xl font-bold">
             Pesan Paket
             <br />
             Sekarang
@@ -70,6 +101,7 @@ export default class ProductDetails extends Component {
     }
 
     if (this.state.redirectToLogin) {return (<Navigate to="/signin" />)}
+    if (this.state.redirectToBook) {return (<Navigate to={"/book-tour/" + this.state.id} />)}
     return (
       <div className="w-full h-[3700px] mt-20 bg-white1 relative">
         <div className="w-full h-screen overflow-hidden bg-pds bg-center lg:bg-cover bg-no-repeat">
