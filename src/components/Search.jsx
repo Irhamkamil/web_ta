@@ -41,6 +41,7 @@ const Search = () => {
     e.preventDefault();
     const SEARCH_URL = '/tour?q=' + searchParams;
     navigate(SEARCH_URL);
+    return false;
   };
 
   return (
