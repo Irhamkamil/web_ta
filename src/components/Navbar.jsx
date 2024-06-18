@@ -25,14 +25,14 @@ export default class Navbar extends Component {
       text: 'Are you want to logout?',
       buttons: [
         Noty.button('YES', 'btn m-1', function () {
-          sessionStorageServices.remove('user_email', user.email)
-          sessionStorageServices.remove('user_uid', user.uid)
-          sessionStorageServices.remove('user_fullname', user_details.displayName)
-          sessionStorageServices.remove('user_phone', user_details.phone)
-          sessionStorageServices.remove('user_photo', FirebaseServices.fileStorageUri(user_details.img))
-          sessionStorageServices.remove('user_address', user_details.address)
-          sessionStorageServices.remove('user_country', user_details.country)
-          sessionStorageServices.remove('user_username', user_details.username)
+          sessionStorageServices.remove('user_email')
+          sessionStorageServices.remove('user_uid')
+          sessionStorageServices.remove('user_fullname')
+          sessionStorageServices.remove('user_phone')
+          sessionStorageServices.remove('user_photo')
+          sessionStorageServices.remove('user_address')
+          sessionStorageServices.remove('user_country')
+          sessionStorageServices.remove('user_username')
           NotyServices.success("Successfuly logout")
           n.close();
           window.location.href = '/'
