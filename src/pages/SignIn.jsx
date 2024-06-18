@@ -9,7 +9,6 @@ export class SignIn extends Component {
   state = {
     email: "",
     password: "",
-    redirectToHome: false
   };
   handleChange = (e) => {
     this.setState({
@@ -31,14 +30,13 @@ export class SignIn extends Component {
       sessionStorageServices.set('user_uid', user.uid)
 
       // Redirect to home
-      this.setState({ redirectToHome: true });
+      window.location.href = '/'
     }).catch((error) => {
       NotyServices.error(error.message)
     })
   };
 
   render() {
-    if (this.state.redirectToHome) {return <Navigate to="/" />; }
     return (
       <div className="mx-auto flex w-full max-w-sm flex-col gap-6 mt-40 mb-20">
         <form onSubmit={this.handleSubmit}>
