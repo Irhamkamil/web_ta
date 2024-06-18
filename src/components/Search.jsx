@@ -29,8 +29,6 @@ const Search = () => {
       setTitles(titles);
     } catch (error) {
       console.log(error);
-      // Assuming NotyServices is defined elsewhere in your project
-      NotyServices.error('Failed to get products data');
     }
   };
 
