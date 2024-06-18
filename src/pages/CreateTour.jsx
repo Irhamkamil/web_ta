@@ -76,7 +76,7 @@ export class CreateTour extends Component {
             // Redirect to home
             window.location.href = '/'
           }).catch((error) => {
-            NotyServices.error(error)
+            NotyServices.error(error.message)
           })
         }),
     

@@ -33,7 +33,8 @@ const Config = {
         products: 'products',
         gallery: 'gallery',
         testimonial: 'testimonial',
-        booking: 'booking'
+        booking: 'booking',
+        users: 'users',
     }
 }
 

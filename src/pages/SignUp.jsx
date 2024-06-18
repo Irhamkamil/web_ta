@@ -4,11 +4,17 @@ import FirebaseServices from '../services/Firebase'
 import NotyServices from "../services/Noty";
 import sessionStorageServices from "../services/SessionStorage";
 import { Navigate } from "react-router-dom";
+import UserModel from "../models/user";
 export class SignUp extends Component {
   state = {
     // diambil dari id pada input
     email: "",
     password: "",
+    address: "",
+    country: "",
+    phone: "",
+    displayName: "",
+    username: "",
     redirectToHome: false
   };
   handleChange = (e) => {
@@ -16,22 +22,41 @@ export class SignUp extends Component {
       [e.target.id]: e.target.value
     });
   };
+
   handleSubmit = (e) => {
     e.preventDefault();
+    const state = this.state
+
     FirebaseServices.createUser(this.state.email, this.state.password).then((userCredential) => {
       // Signed in 
       const user = userCredential.user
-      console.log(user)
 
-      // Show success message
-      NotyServices.success('Hi, ' + user.email + '! You have successfully signed up.')
+      UserModel.isUserNameExist(state.username).then((isExist) => {
+        if (isExist) {
+          NotyServices.error('Username already exist!')
+          return false
+        }
+  
+        // Save user to firestore
+        UserModel.save(state.email, state.password, state.address, state.country, state.phone, state.displayName, state.username).then((results) => {
+          // Save to session
+          sessionStorageServices.set('user_email', user.email)
+          sessionStorageServices.set('user_uid', user.uid)
+          sessionStorageServices.set('user_fullname', state.displayName)
+          sessionStorageServices.set('user_phone', state.phone)
 
-      // Save to session
-      sessionStorageServices.set('user_email', user.email)
-      sessionStorageServices.set('user_uid', user.uid)
+          // Show success message
+          NotyServices.success('Hi, ' + user.email + '! You have successfully signed up.')
 
-      // Redirect to home
-      this.setState({ redirectToHome: true });
+          // Redirect to home
+          this.setState({ redirectToHome: true });
+        }).catch((error) => {
+          NotyServices.error(error.message)
+        })
+        
+      }).catch((error) => {
+        NotyServices.error(error.message)
+      })
     }).catch((error) => {
       NotyServices.error(error.message)
     })
@@ -48,6 +73,86 @@ export class SignUp extends Component {
           </div>
           <div className="form-group">
             <div className="form-field">
+              <label className="form-label">Full Name</label>
+              <input
+                placeholder="Type here"
+                type="text"
+                id="displayName"
+                onChange={this.handleChange}
+                className="input max-w-full"
+              />
+              <label className="form-label">
+                <span className="form-label-alt">
+                  Please enter your name.
+                </span>
+              </label>
+            </div>
+
+            <div className="form-field">
+              <label className="form-label">Username</label>
+              <input
+                placeholder="Type here"
+                type="text"
+                id="username"
+                onChange={this.handleChange}
+                className="input max-w-full"
+              />
+              <label className="form-label">
+                <span className="form-label-alt">
+                  Please enter your username.
+                </span>
+              </label>
+            </div>
+
+            <div className="form-field">
+              <label className="form-label">Phone</label>
+              <input
+                placeholder="Type here"
+                type="tel"
+                id="phone"
+                onChange={this.handleChange}
+                className="input max-w-full"
+              />
+              <label className="form-label">
+                <span className="form-label-alt">
+                  Please enter your phone number.
+                </span>
+              </label>
+            </div>
+
+            <div className="form-field">
+              <label className="form-label">Country</label>
+              <input
+                placeholder="Type here"
+                type="text"
+                id="country"
+                onChange={this.handleChange}
+                className="input max-w-full"
+              />
+              <label className="form-label">
+                <span className="form-label-alt">
+                  Please enter your country.
+                </span>
+              </label>
+            </div>
+
+            <div className="form-field">
+              <label className="form-label">Address</label>
+              <input
+                placeholder="Type here"
+                type="text"
+                id="address"
+                onChange={this.handleChange}
+                className="input max-w-full"
+              />
+              <label className="form-label">
+                <span className="form-label-alt">
+                  Please enter your address.
+                </span>
+              </label>
+            </div>
+
+            <div className="form-field">
               <label className="form-label">Email address</label>
               <input
                 placeholder="Type here"
@@ -62,6 +167,7 @@ export class SignUp extends Component {
                 </span>
               </label>
             </div>
+
             <div className="form-field">
               <label className="form-label">Password</label>
               <div className="form-control">
