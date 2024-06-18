@@ -4,7 +4,7 @@ import EncryptionServices from "../services/Encryption";
 
 const Product = ({ products }) => {
   return (
-    <>
+    <div>
       <div className="grid grid-cols-2 md:grid-cols-3 w-full px-10 mt-20 my-10 gap-10 relative">
         {products.map((product, index) => (
           <div key={index}>
@@ -29,7 +29,7 @@ const Product = ({ products }) => {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

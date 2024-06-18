@@ -105,15 +105,13 @@ export default class ProductDetails extends Component {
     return (
       <div className="w-full h-[3700px] mt-20 bg-white1 relative">
         <div className="w-full h-screen overflow-hidden bg-pds bg-center lg:bg-cover bg-no-repeat">
-          <div className="container w-full h-full gap-5 flex flex-col items-center justify-center brightness-200">
+          <div className="container mx-auto w-full h-full gap-5 flex flex-col items-center justify-center brightness-200">
             <h1 className="text-white text-center text-5xl">
               Domestic & International Tour Packages - {this.state.product.name}
             </h1>
             <p className="text-white text-base text-center w-6/12">
-              Now, holidays are becoming EASY, FAST, and FUN. {Config.app.name} provides
-              various options for tour packages, domestic and international tours
-              to various favorite destinations. Choose your package and experience
-              the convenience!
+              {this.state.product.name} is best tourist destination in Indonesia. {Config.app.name} provides various options for tour packages, domestic and international tours.
+              Book now and get the best deals for your vacation.
             </p>
           </div>
         </div>
@@ -162,7 +160,7 @@ export default class ProductDetails extends Component {
           </div>
           <BookingButtonElement />
         </div>
-        <div className="container flex flex-col w-full h-40 items-center justify-center gap-3 mt-24">
+        <div className="container mx-auto flex flex-col w-full h-40 items-center justify-center gap-3 mt-24">
           <h2 className="font-bold text-2xl text-black">
             Best Tourist Destinations
           </h2>
@@ -170,7 +168,7 @@ export default class ProductDetails extends Component {
             The Best Tour Package Options Ready to Pamper Your Vacation
           </p>
         </div>
-        <div className="container w-full -mt-10">
+        <div className="container mx-auto w-full -mt-10">
           <Product products={this.state.products} />
         </div>
       </div>

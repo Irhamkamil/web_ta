@@ -46,27 +46,23 @@ export default class Testimoni extends Component {
         <div className="w-full h-screen overflow-hidden bg-home bg-center lg:bg-cover bg-no-repeat brightness-75">
           <div className="container mx-36 h-full w-8/12 gap-5 flex flex-col items-start justify-center brightness-200">
             <h1 className="text-white text-4xl">
-              Domestic & International Tour Packages
+              Find out the best tour testimonial
             </h1>
             <p className="text-white text-xl text-justify w-7/12">
-              Now, holidays are becoming EASY, FAST, and FUN. {Config.app.name} provides
-              various options for tour packages, domestic and international tours
-              to various favorite destinations. Choose your package and experience
-              the convenience!
+              Are you satisfied with our service? You can share your testimonial here. Find the best tour packages with the best price and the best service only at {Config.app.name}. Book now and get the best deals for your vacation.
             </p>
           </div>
         </div>
         <div className="container w-10/12 h-48 mx-32 mt-[-100px] relative">
           <Search />
         </div>
-        <div className="container flex flex-col lg:w-full h-40 items-center justify-center gap-3 mt-16">
+        <div className="container mx-auto flex flex-col lg:w-full h-40 items-center justify-center gap-3 mt-16">
           <h2 className="font-bold text-2xl text-black">Our Customer Testimonial</h2>
           <p className="text-black font-medium">
             Read our bes customer testimonial
           </p>
         </div>
-        <div className="container -mt-10 w-full px-40">
-
+        <div className="container mx-auto -mt-10 w-full px-40">
           {this.state.testimonial.map((testimoni, index) => {
             return (
               <div className="card min-w-full my-10" key={index}>

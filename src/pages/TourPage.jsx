@@ -56,23 +56,20 @@ export default class TourPage extends Component {
               Domestic & International Tour Packages
             </h1>
             <p className="text-white text-xl text-justify w-7/12">
-              Now, holidays are becoming EASY, FAST, and FUN. {Config.app.name} provides
-              various options for tour packages, domestic and international tours
-              to various favorite destinations. Choose your package and experience
-              the convenience!
+              Find the best tour packages with the best price and the best service only at {Config.app.name}. Book now and get the best deals for your vacation.
             </p>
           </div>
         </div>
         <div className="container w-10/12 h-48 mx-32 mt-[-100px] relative">
           <Search />
         </div>
-        <div className="container flex flex-col lg:w-full h-40 items-center justify-center gap-3 mt-16">
+        <div className="container mx-auto flex flex-col lg:w-full h-40 items-center justify-center gap-3 mt-16">
           <h2 className="font-bold text-2xl text-black">The Best Tour Package</h2>
           <p className="text-black font-medium">
             The Best Tour Package Options Ready to Pamper Your Holiday
           </p>
         </div>
-        <div className="container w-full -mt-14">
+        <div className="container mx-auto w-full -mt-14">
           <Product products={this.state.products} />
         </div>
       </div>

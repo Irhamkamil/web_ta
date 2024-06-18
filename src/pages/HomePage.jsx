@@ -61,26 +61,24 @@ export default class HomePage extends Component {
         <div className="w-full h-screen overflow-hidden bg-home bg-center lg:bg-cover bg-no-repeat brightness-75">
           <div className="container mx-36 h-full w-8/12 gap-5 flex flex-col items-start justify-center brightness-200">
             <h1 className="text-white text-4xl">
-              Domestic & International Tour Packages
+              Welcome To {Config.app.name}!
             </h1>
             <p className="text-white text-xl text-justify w-7/12">
-              Now, holidays are becoming EASY, FAST, and FUN. {Config.app.name} provides
-              various options for tour packages, domestic and international tours
-              to various favorite destinations. Choose your package and experience
-              the convenience!
+              Do you want to travel? {Config.app.name} is the right choice for you. 
+              We provide various options for tour packages, domestic and international tours.
             </p>
           </div>
         </div>
         <div className="container w-10/12 h-48 mx-32 mt-[-100px] relative">
           <Search />
         </div>
-        <div className="container flex flex-col lg:w-full h-40 items-center justify-center gap-3 mt-16">
+        <div className="container mx-auto flex flex-col lg:w-full h-40 items-center justify-center gap-3 mt-16">
           <h2 className="font-bold text-2xl text-black">The Best Tour Package</h2>
           <p className="text-black font-medium">
             The Best Tour Package Options Ready to Pamper Your Holiday
           </p>
         </div>
-        <div className="container w-full -mt-14">
+        <div className="container w-full -mt-14 mx-auto">
           <Product products={this.state.products} />
         </div>
         <div className="flex h-auto items-center mt-28 relative bg-black">
@@ -110,7 +108,7 @@ export default class HomePage extends Component {
             </p>
           </div>
         </div>
-        <div className="container flex flex-col w-full h-40 items-center justify-center gap-3 mt-16">
+        <div className="container mx-auto flex flex-col w-full h-40 items-center justify-center gap-3 mt-16">
           <h2 className="font-bold text-2xl text-black">
             Best Tourist Destinations
           </h2>
@@ -118,7 +116,7 @@ export default class HomePage extends Component {
             The Best Tour Package Options Ready to Pamper Your Vacation
           </p>
         </div>
-        <div className="container w-full -mt-14">
+        <div className="container w-full mx-auto -mt-14">
           <Product products={this.state.bestDestination} />
         </div>
         <div className="flex h-auto items-center bg-primer mt-60">
@@ -182,7 +180,7 @@ export default class HomePage extends Component {
             </div>
           </div>
         </div>
-        <div className="container flex flex-col w-full h-40 items-center justify-center gap-3 mt-16">
+        <div className="container mx-auto flex flex-col w-full h-40 items-center justify-center gap-3 mt-16">
           <h2 className="font-bold text-2xl text-black">Gallery</h2>
           <p className="text-black font-medium">
             Hundreds of companies have entrusted their tours
@@ -191,7 +189,7 @@ export default class HomePage extends Component {
             and events with Labiru, now it&#39;s your turn
           </p>
         </div>
-        <div className="container w-full mt-14">
+        <div className="container w-full -ml-10 mt-14">
           <Image images={this.state.gallery} />
         </div>
         <div className="container flex flex-col w-full h-40 items-center justify-center gap-3 mt-40">
