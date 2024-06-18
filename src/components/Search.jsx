@@ -3,8 +3,6 @@ import { Component } from "react";
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import ProductsModels from "../models/products";
-// import { Navigate } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 export default class Search extends Component {
   state = {
     titles: [],
