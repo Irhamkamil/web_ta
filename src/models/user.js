@@ -47,7 +47,7 @@ class User {
      * @param {*} username 
      * @returns 
      */
-    static save(email, password, address, country, phone, displayName, username) {
+    static save(email, password, address, country, phone, displayName, username, profile_image) {
         return new Promise((resolve, reject) => {
             setDoc(doc(collection(FirebaseServices.firestore(), Config.firestore.users)), {
                 email: email,
@@ -57,6 +57,7 @@ class User {
                 phone: phone,
                 displayName: displayName,
                 username: username,
+                img: profile_image,
                 timestamp: Moment().format('MMMM DD, YYYY HH:mm:ss'),
             }).then((results) => {
                 return resolve(results)

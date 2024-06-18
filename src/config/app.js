@@ -9,8 +9,8 @@ const Config = {
         // path in the storage bucket to stored the logo image
         logo: 'assets/outrekk.png',
 
+        // Admin whatsapp number
         whatsapp_admin: '6282126544124',
-        // whatsapp_admin: '6289655541804',
     },
 
     /**
@@ -35,6 +35,14 @@ const Config = {
         testimonial: 'testimonial',
         booking: 'booking',
         users: 'users',
+    },
+
+    /**
+     * Storage configuration section
+     */
+    'storage': {
+        // User profile image path in the storage bucket
+        user_profile: 'users',
     }
 }
 

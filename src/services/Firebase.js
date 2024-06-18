@@ -5,6 +5,7 @@ import { getAnalytics } from "firebase/analytics";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import sessionStorageServices from "./SessionStorage";
 import { getFirestore } from "firebase/firestore";
+import { getStorage, ref, uploadBytes, uploadString } from "firebase/storage";
 
 // Docs : https://firebase.google.com/docs/web/setup
 class FirebaseServices {
@@ -68,6 +69,26 @@ class FirebaseServices {
      */
     static firestore() {
         return getFirestore(this.app());
+    }
+
+    /**
+     * Get storage
+     * @returns 
+     */
+    static storage() {
+        return getStorage(this.app());
+    }
+
+    /**
+     * Upload file from base64 string
+     * @param {*} base64 
+     * @param {*} filepath 
+     * @returns 
+     */
+    static uploadFileFromBase64(base64, filepath) {
+        const storage = this.storage();
+        const storageRef = ref(storage, filepath);
+        return uploadString(storageRef, base64, 'data_url');
     }
 }
 

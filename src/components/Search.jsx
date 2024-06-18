@@ -3,7 +3,8 @@ import { Component } from "react";
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import ProductsModels from "../models/products";
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 export default class Search extends Component {
   state = {
     titles: [],
@@ -39,12 +40,15 @@ export default class Search extends Component {
     })
   };
 
-  searchHandle = () => {
-    this.setState({ redirectAfterSubmit: true })
+  searchHandle = (e) => {
+    let navigate = useNavigate();
+    navigate("/tour?q=" + this.state.search_params)
+    return false
+
+    // window.location.href = "/tour?q=" + this.state.search_params
   }
 
   render() {
-    if (this.state.redirectAfterSubmit) {return <Navigate to={"/tour?q=" + this.state.search_params} />}
     return (
       <div className=" border rounded-2xl w-full h-48 bg-white1 shadow-2xl absolute">
         <div className="w-full h-full pl-4">
