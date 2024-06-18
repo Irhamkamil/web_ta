@@ -41,11 +41,7 @@ export default class Search extends Component {
   };
 
   searchHandle = (e) => {
-    let navigate = useNavigate();
-    navigate("/tour?q=" + this.state.search_params)
-    return false
-
-    // window.location.href = "/tour?q=" + this.state.search_params
+    window.location.href = "/tour?q=" + this.state.search_params
   }
 
   render() {
