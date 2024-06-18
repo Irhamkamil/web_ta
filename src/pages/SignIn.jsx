@@ -4,6 +4,7 @@ import FirebaseServices from '../services/Firebase'
 import NotyServices from "../services/Noty";
 import sessionStorageServices from "../services/SessionStorage";
 import { Navigate } from "react-router-dom";
+import UserModel from "../models/user";
 
 export class SignIn extends Component {
   state = {
@@ -20,17 +21,32 @@ export class SignIn extends Component {
     FirebaseServices.signInUser(this.state.email, this.state.password).then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
-      console.log(user)
 
-      // Show success message
-      NotyServices.success('Hi, ' + user.email + '! You have successfully signed up.')
+      // Find user by email in firestore
+      UserModel.findBy('email', user.email).then((results) => {
+        if (results.docs.length == 0) {
+          NotyServices.error('User not found!')
+          return false
+        }
 
-      // Save to session
-      sessionStorageServices.set('user_email', user.email)
-      sessionStorageServices.set('user_uid', user.uid)
+        // Get user details
+        const user_details = results.docs[0].data()
 
-      // Redirect to home
-      window.location.href = '/'
+        // Save to session
+        sessionStorageServices.set('user_email', user.email)
+        sessionStorageServices.set('user_uid', user.uid)
+        sessionStorageServices.set('user_fullname', user_details.displayName)
+        sessionStorageServices.set('user_phone', user_details.phone)
+        sessionStorageServices.set('user_photo', FirebaseServices.fileStorageUri(user_details.img))
+        sessionStorageServices.set('user_address', user_details.address)
+        sessionStorageServices.set('user_country', user_details.country)
+        sessionStorageServices.set('user_username', user_details.username)
+
+        // Redirect to home
+        window.location.href = '/'
+      }).catch((error) => {
+        NotyServices.error(error.message)
+      })
     }).catch((error) => {
       NotyServices.error(error.message)
     })

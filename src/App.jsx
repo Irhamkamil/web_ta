@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import TourPage from "./pages/TourPage";
 import TestimoniPage from "./pages/TestimoniPage";
+import BookingPage from "./pages/BookingPage";
 
 // Components
 import Navbar from "./components/Navbar";
@@ -25,6 +26,7 @@ function App() {
         <Route path="/testimoni" element={<TestimoniPage />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/riwayat-pemesanan" element={<BookingPage />} />
         <Route path="/book-tour/:id" element={<BookTourWrapper />} />
         <Route path="/tour/details/:id" element={<ProductDetailsWrapper />} />
       </Routes>

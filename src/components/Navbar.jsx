@@ -45,6 +45,9 @@ export default class Navbar extends Component {
       if (this.state.isLoggedIn) {
         return (
           <>
+            <NavLink to="/riwayat-pemesanan" className="navbar-item">
+                Pemesanan
+            </NavLink>
             <form onSubmit={this.logoutAction}>
               <button className="btn btn-warning text-base btn-lg font-bold text-dark">
                 Logout
