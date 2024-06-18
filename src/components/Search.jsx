@@ -2,29 +2,24 @@ import React, { useState, useEffect } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import ProductsModels from '../models/products';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Search = () => {
   const [titles, setTitles] = useState([]);
-  const [searchParams, setSearchParams] = useState(null);
+  const [searchParams, setSearchParams] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    setDefaultValue();
-    listProducts();
-  }, []);
-
-  const setDefaultValue = () => {
-    // search params from url
-    const urlParams = new URLSearchParams(window.location.search);
-
-    // get q from url
+    const urlParams = new URLSearchParams(location.search);
     const query = urlParams.get('q');
 
-    if (!['', null, undefined].includes(query)) {
+    if (query && searchParams !== query) {
       setSearchParams(query);
     }
-  };
+
+    listProducts();
+  }, []);
 
   const listProducts = async () => {
     try {
@@ -34,6 +29,8 @@ const Search = () => {
       setTitles(titles);
     } catch (error) {
       console.log(error);
+      // Assuming NotyServices is defined elsewhere in your project
+      NotyServices.error('Failed to get products data');
     }
   };
 
@@ -41,7 +38,6 @@ const Search = () => {
     e.preventDefault();
     const SEARCH_URL = '/tour?q=' + searchParams;
     navigate(SEARCH_URL);
-    return false;
   };
 
   return (
